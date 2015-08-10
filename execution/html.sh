@@ -28,9 +28,9 @@ if [[ -f $javaDir$1.java ]]; then
 	echo '<head>'
 	echo '	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />'
 	echo '	<title>Hello SyntaxHighlighter</title>'
-	echo '	<script type="text/javascript" src="../../../html/syntaxhighlighter_3.0.83/scripts/shCore.js"></script>'
-	echo '	<script type="text/javascript" src="../../../html/syntaxhighlighter_3.0.83/scripts/shBrushJava.js"></script>'
-	echo '	<link type="text/css" rel="stylesheet" href="../../../html/syntaxhighlighter_3.0.83/styles/shCoreEclipse.css"/>'
+	echo '	<script type="text/javascript" src="../../../html/syntaxhighlighter/scripts/shCore.js"></script>'
+	echo '	<script type="text/javascript" src="../../../html/syntaxhighlighter/scripts/shBrushJava.js"></script>'
+	echo '	<link type="text/css" rel="stylesheet" href="../../../html/syntaxhighlighter/styles/shCoreEclipse.css"/>'
 	echo '	<script type="text/javascript">SyntaxHighlighter.all();</script>'
 	echo '</head>'
 
