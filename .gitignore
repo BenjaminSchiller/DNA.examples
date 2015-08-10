@@ -1,3 +1,4 @@
+execution/*.jar
 java/bin
 java/config
 output
