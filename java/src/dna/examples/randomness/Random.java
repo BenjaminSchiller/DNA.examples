@@ -1,11 +1,11 @@
-package dna.examples.batches;
+package dna.examples.randomness;
 
 import dna.examples.Example;
 
 // TODO write
-public class BatchGenerators extends Example {
+public class Random extends Example {
 
-	public BatchGenerators(String[] args) {
+	public Random(String[] args) {
 		super(args);
 	}
 
