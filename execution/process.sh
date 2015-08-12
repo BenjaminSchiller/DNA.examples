@@ -18,7 +18,7 @@ function process_dir {
 function process_file {
 	echo ">>> $1"
 	if [[ ! -f $outputDir$1/log ]]; then
-		java -jar examples.jar $inputDir $outputDir $1 > $outputDir$1/log
+		java -jar examples.jar $inputDir $outputDir $1 &> $outputDir$1/log
 	fi
 	./html.sh $1 > $outputDir$1/index.html
 }
