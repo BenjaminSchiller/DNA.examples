@@ -34,7 +34,6 @@ public abstract class Example {
 		packages = new String[temp.length - 2];
 		for (int i = 1; i < temp.length - 1; i++) {
 			packages[i - 1] = temp[i];
-			System.out.println("cat..." + (i - 1) + ": " + args[i]);
 		}
 		name = temp[temp.length - 1].replace(".java", "");
 	}
@@ -43,9 +42,11 @@ public abstract class Example {
 			InstantiationException, IllegalAccessException,
 			IllegalArgumentException, InvocationTargetException,
 			NoSuchMethodException, SecurityException {
-		// String in = "../input/";
-		// String out = "../output/";
-		// args = new String[] { in, out, "graphs/Generators.java" };
+		if (args.length == 0) {
+			String in = "../input";
+			String out = "output";
+			args = new String[] { in, out, "/gvis/GraphVis" };
+		}
 
 		if (args.length != 3) {
 			System.err
