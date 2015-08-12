@@ -31,6 +31,9 @@ if [[ -f $javaDir$1.java ]]; then
 	echo '	<script type="text/javascript" src="../../../html/syntaxhighlighter/scripts/shCore.js"></script>'
 	echo '	<script type="text/javascript" src="../../../html/syntaxhighlighter/scripts/shBrushJava.js"></script>'
 	echo '	<link type="text/css" rel="stylesheet" href="../../../html/syntaxhighlighter/styles/shCoreEclipse.css"/>'
+	echo '	<script type="text/javascript" src="../../../../html/syntaxhighlighter/scripts/shCore.js"></script>'
+	echo '	<script type="text/javascript" src="../../../../html/syntaxhighlighter/scripts/shBrushJava.js"></script>'
+	echo '	<link type="text/css" rel="stylesheet" href="../../../../html/syntaxhighlighter/styles/shCoreEclipse.css"/>'
 	echo '	<script type="text/javascript">SyntaxHighlighter.all();</script>'
 	echo '</head>'
 
@@ -46,7 +49,7 @@ if [[ -f $javaDir$1.java ]]; then
 	echo "<h2>CODE</h2>"
 	echo '<pre style="height: auto; max-height: 300px; overflow: auto; border-style:dashed; border-width: 1px;">'
 	echo '<pre class="brush: java;">'
-	cat $javaDir$1.java | sed -e '1,/@Override/d' | sed \$d | sed 's/	//'
+	cat $javaDir$1.java | grep -v "\*" | sed -e '1,/ class /d' | sed \$d | sed 's/	//'
 	echo "</pre>"
 	echo "</pre>"
 	echo '</td><td>'
@@ -74,10 +77,19 @@ if [[ -f $javaDir$1.java ]]; then
 		done
 	fi
 
-	if [[ -d $outputDir$1/$snapshotDir/ ]]; then
-		echo "<h2>SNAPSHOTS</h2>"
-		for a in $(ls $outputDir$1/$snapshotDir/); do
-			echo "<a href='$shapshotDir/$a'><img src='$snapshotDir/$a' width='200'/></a>"
+	if [[ -d $outputDir$1/$screenshotDir/ ]]; then
+		echo "<h2>SCREENSHOTS</h2>"
+		for a in $(ls $outputDir$1/$screenshotDir/ | grep 'png'); do
+			echo "<a href='$shapshotDir/$a'><img src='$screenshotDir/$a' title='$a' width='$screenshotWidth'/></a>"
+		done
+		for a in $(ls $outputDir$1/$screenshotDir/ | grep -v '.png\|.pdf'); do
+			if [[ -d $outputDir$1/$screenshotDir/$a ]]; then
+				if [[ -f $outputDir$1/$screenshotDir/$a/$animatedFilename ]]; then
+					echo "<a href='$shapshotDir/$a/$animatedFilename'><img src='$screenshotDir/$a/$animatedFilename' title='$a' width='$animatedWidth'/></a>"
+				else
+					echo "<a href='$shapshotDir/$a/'>$a</a>"
+				fi
+			fi
 		done
 	fi
 
