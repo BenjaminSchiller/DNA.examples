@@ -1,4 +1,4 @@
-package dna.examples.graphs;
+package dna.examples.graphs.weights;
 
 import dna.graph.datastructures.GDS;
 import dna.graph.datastructures.GraphDataStructure;

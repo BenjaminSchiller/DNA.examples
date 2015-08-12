@@ -1,4 +1,4 @@
-package dna.examples.graphs;
+package dna.examples.graphs.generators;
 
 import dna.examples.Example;
 import dna.graph.Graph;

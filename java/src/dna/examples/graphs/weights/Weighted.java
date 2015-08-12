@@ -1,4 +1,4 @@
-package dna.examples.graphs;
+package dna.examples.graphs.weights;
 
 import dna.examples.Example;
 import dna.graph.Graph;
@@ -40,11 +40,27 @@ public abstract class Weighted extends Example {
 			Log.infoSep();
 			System.out.println();
 
-			GraphWriter.write(g, outDir(), gds_.getEdgeWeightType()
-					.getSimpleName()
-					+ "--"
-					+ gds_.getEdgeWeightSelection()
-					+ graphSuffix);
+			if (gds_.getNodeWeightType() != null && gds_.getEdgeWeightType() != null) {
+				GraphWriter.write(g, outDir(), gds_.getNodeWeightType()
+						.getSimpleName()
+						+ "--"
+						+ gds_.getNodeWeightSelection()
+						+ "--"
+						+ gds_.getEdgeWeightType().getSimpleName()
+						+ "--" + gds_.getEdgeWeightSelection() + graphSuffix);
+			} else if (gds_.getNodeWeightType() != null) {
+				GraphWriter.write(g, outDir(), gds_.getNodeWeightType()
+						.getSimpleName()
+						+ "--"
+						+ gds_.getNodeWeightSelection()
+						+ graphSuffix);
+			} else if (gds_.getEdgeWeightType() != null) {
+				GraphWriter.write(g, outDir(), gds_.getEdgeWeightType()
+						.getSimpleName()
+						+ "--"
+						+ gds_.getEdgeWeightSelection()
+						+ graphSuffix);
+			}
 		}
 	}
 
