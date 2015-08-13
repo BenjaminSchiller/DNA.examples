@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <project default="all" name="examples">
-
-    <target name="all" depends="examples">
-    </target>
-
+    <target name="all" depends="examples"/>
     <target name="examples">
         <jar destfile="examples.jar" filesetmanifest="mergewithoutmain">
             <manifest>
@@ -16,5 +13,4 @@
             <zipgroupfileset dir="../../DNA/lib/" includes="**/*.jar" />
         </jar>
     </target>
-
 </project>

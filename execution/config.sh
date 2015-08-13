@@ -7,6 +7,6 @@ dataDir="data"
 plotDir="plots"
 screenshotDir="screenshots"
 
-screenshotWidth="500"
+screenshotWidth="400"
 animatedFilename="animated.gif"
-animatedWidth="500"
+animatedWidth="400"

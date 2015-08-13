@@ -3,7 +3,7 @@
 source config.sh
 
 function process_dir {
-	./html.sh $1 > $outputDir$1/index.html
+	./html.sh $1 > $outputDir$1/index.php
 	for a in $(ls $javaDir$1); do
 		if [[ -d "$javaDir$1/$a" ]]; then
 			if [[ ! -d "$outputDir$1/$a" ]]; then mkdir "$outputDir$1/$a"; fi
@@ -20,7 +20,7 @@ function process_file {
 	if [[ ! -f $outputDir$1/log ]]; then
 		java -jar examples.jar $inputDir $outputDir $1 &> $outputDir$1/log
 	fi
-	./html.sh $1 > $outputDir$1/index.html
+	./html.sh $1 > $outputDir$1/index.php
 }
 
 process_dir ""

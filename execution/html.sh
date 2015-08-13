@@ -15,29 +15,37 @@ IFS=$OIFS
 nav=""
 back=""
 for (( i=${#elements[@]}-1; i>0; i-- )); do
-	nav=" - <a href='${back}index.html'>${elements[$i]}</a>$nav"
+	nav=" - <a href='${back}index.php'>${elements[$i]}</a>$nav"
 	back="../$back"
 done
-nav="<a href='${back}index.html'>dna.example</a>$nav"
+nav="<a href='${back}index.php'>dna.example</a>$nav"
 IFS=$OIFS
 
 
+echo '<?php'
+	echo '$path = str_replace("/Users/benni/TUD/Projects/DNA/DNA.webpage/web/", "", getcwd());'
+	echo '$dirs = split("/", $path);'
+	echo '$pre = "";'
+	echo 'for($i = 0; $i < count($dirs); $i++) { $pre .= "../"; }'
+	echo 'require($pre."layout/header.php");'
+echo '?>'
+
 if [[ -f $javaDir$1.java ]]; then
 
-	echo "<html>"
-	echo '<head>'
-	echo '	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />'
-	echo '	<title>Hello SyntaxHighlighter</title>'
-	echo '	<script type="text/javascript" src="../../../html/syntaxhighlighter/scripts/shCore.js"></script>'
-	echo '	<script type="text/javascript" src="../../../html/syntaxhighlighter/scripts/shBrushJava.js"></script>'
-	echo '	<link type="text/css" rel="stylesheet" href="../../../html/syntaxhighlighter/styles/shCoreEclipse.css"/>'
-	echo '	<script type="text/javascript" src="../../../../html/syntaxhighlighter/scripts/shCore.js"></script>'
-	echo '	<script type="text/javascript" src="../../../../html/syntaxhighlighter/scripts/shBrushJava.js"></script>'
-	echo '	<link type="text/css" rel="stylesheet" href="../../../../html/syntaxhighlighter/styles/shCoreEclipse.css"/>'
-	echo '	<script type="text/javascript">SyntaxHighlighter.all();</script>'
-	echo '</head>'
+	# echo "<html>"
+	# echo '<head>'
+	# echo '	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />'
+	# echo '	<title>Hello SyntaxHighlighter</title>'
+	# echo '	<script type="text/javascript" src="../../../html/syntaxhighlighter/scripts/shCore.js"></script>'
+	# echo '	<script type="text/javascript" src="../../../html/syntaxhighlighter/scripts/shBrushJava.js"></script>'
+	# echo '	<link type="text/css" rel="stylesheet" href="../../../html/syntaxhighlighter/styles/shCoreEclipse.css"/>'
+	# echo '	<script type="text/javascript" src="../../../../html/syntaxhighlighter/scripts/shCore.js"></script>'
+	# echo '	<script type="text/javascript" src="../../../../html/syntaxhighlighter/scripts/shBrushJava.js"></script>'
+	# echo '	<link type="text/css" rel="stylesheet" href="../../../../html/syntaxhighlighter/styles/shCoreEclipse.css"/>'
+	# echo '	<script type="text/javascript">SyntaxHighlighter.all();</script>'
+	# echo '</head>'
 
-	echo "<body>$nav<br></br>"
+	#echo "<body>$nav<br></br>"
 	echo "<h1>${elements[${#elements[@]} - 1]}</h1>"
 
 	#echo '<table><tr><td colspan="2">'
@@ -103,11 +111,7 @@ if [[ -f $javaDir$1.java ]]; then
 	fi
 
 	#echo '</td></tr></table>'
-
-	echo "</body>"
-	echo "</html>"
 else
-	echo "<html><body>$nav<br></br>"
 	if [[ ${#elements[@]} -ge 2 ]]; then
 		echo "<h1>${elements[${#elements[@]} - 1]}</h1>"
 	else
@@ -115,9 +119,11 @@ else
 	fi
 	echo "<ul>"
 	for a in $(ls $outputDir/$1); do
-		if [[ "index.html" != $a ]]; then
-			echo "<li><a href='$a/index.html'>$a</a></li>"
+		if [[ "index.php" != $a ]]; then
+			echo "<li><a href='$a/index.php'>$a</a></li>"
 		fi
 	done
-	echo '</ul></body></html>'
+	echo '</ul>'
 fi
+
+echo '<?php require($pre."layout/footer.php"); ?>';
