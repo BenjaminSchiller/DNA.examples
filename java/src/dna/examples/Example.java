@@ -49,13 +49,17 @@ public abstract class Example {
 		}
 
 		if (args.length != 3) {
+			System.err.println("DNA examples - expecting 3 arguments:");
 			System.err
-					.println("DNA examples execution - expecting at least 3 arguments:");
-			System.err.println("  0: input dir (without / at the end)");
-			System.err.println("  1: output dir (without / at the end)");
-			System.err.println("  2: folder structure of packages and class");
-			System.err.println("     e.g. /pkg1/pkg2/Class.java");
-			System.err.println("     i.e. excluding dna/examples");
+					.println("  0: input data directory (without / at the end)");
+			System.err.println("     e.g., ../input");
+			System.err
+					.println("  1: output data directory (without / at the end)");
+			System.err.println("     e.g., ../output");
+			System.err
+					.println("  2: example (folder structure of packages and class)");
+			System.err.println("     e.g. /graph/weights/WeightedEdges");
+			System.err.println("     i.e. excluding dna/examples and .java");
 			return;
 		}
 
@@ -79,6 +83,7 @@ public abstract class Example {
 		Log.info("         " + ex.dataDir());
 		Log.info("         " + ex.plotDir());
 		Log.info("         " + ex.screenshotDir());
+		Log.info("         " + ex.outDir());
 		Log.infoSep();
 		System.out.println("");
 		System.out.println("");
