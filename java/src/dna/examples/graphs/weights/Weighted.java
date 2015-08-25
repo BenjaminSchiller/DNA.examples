@@ -40,7 +40,8 @@ public abstract class Weighted extends Example {
 			Log.infoSep();
 			System.out.println();
 
-			if (gds_.getNodeWeightType() != null && gds_.getEdgeWeightType() != null) {
+			if (gds_.getNodeWeightType() != null
+					&& gds_.getEdgeWeightType() != null) {
 				GraphWriter.write(g, outDir(), gds_.getNodeWeightType()
 						.getSimpleName()
 						+ "--"
