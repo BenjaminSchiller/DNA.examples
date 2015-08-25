@@ -121,7 +121,13 @@ else
 	echo "<ul>"
 	for a in $(ls $outputDir/$1); do
 		if [[ "index.php" != $a ]]; then
-			echo "<li><a href='$a/index.php' style='font-size:14pt;'>$a</a></li>"
+			echo "<h2><a href='$a/index.php' style='font-size:14pt;'>$a</a></h2>"
+			if [[ -e "$javaDir$1/$a/package-info.java" ]]; then
+				cat $javaDir$1/$a/package-info.java | grep -v package | grep -v '/\*\*' | grep -v '\*/' | sed 's/ \* //g' | sed 's/ \*//'
+			elif [[ -e "$javaDir$1/$a.java" ]]; then
+				cat $javaDir$1/$a.java | grep "\*" | grep -v "/\*" | grep -v "\*/" | grep -v "@author" | sed 's/ \* //g' | sed 's/ \*//'
+			fi
+			echo "<?php spacer(); ?>"
 		fi
 	done
 	echo '</ul>'
