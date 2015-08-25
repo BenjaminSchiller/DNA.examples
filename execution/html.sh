@@ -23,7 +23,8 @@ IFS=$OIFS
 
 
 echo '<?php'
-	echo '$path = str_replace("/Users/benni/TUD/Projects/DNA/DNA.webpage/web/", "", getcwd());'
+	# echo '$path = str_replace("/Users/benni/TUD/Projects/DNA/DNA.webpage/web/", "", getcwd());'
+	echo '$path = ltrim(str_replace($_SERVER["DOCUMENT_ROOT"], "", getcwd()), "/");'
 	echo '$dirs = split("/", $path);'
 	echo '$pre = "";'
 	echo 'for($i = 0; $i < count($dirs); $i++) { $pre .= "../"; }'
@@ -46,7 +47,7 @@ if [[ -f $javaDir$1.java ]]; then
 	# echo '</head>'
 
 	#echo "<body>$nav<br></br>"
-	echo "<h1>${elements[${#elements[@]} - 1]}</h1>"
+	# echo "<h1>${elements[${#elements[@]} - 1]}</h1>"
 
 	#echo '<table><tr><td colspan="2">'
 	echo "<h2>DESCRIPTION</h2>"
@@ -105,22 +106,22 @@ if [[ -f $javaDir$1.java ]]; then
 		echo "<h2>OUT</h2>"
 		echo "<ul>"
 		for a in $(ls $outputDir$1/$outDir); do
-			echo "<li> <a href='$outDir/$a'>$a</a> </li>"
+			echo "<li> <a href='$outDir/$a' style='font-size:12pt;'>$a</a> </li>"
 		done
 		echo "</ul>"
 	fi
 
 	#echo '</td></tr></table>'
 else
-	if [[ ${#elements[@]} -ge 2 ]]; then
-		echo "<h1>${elements[${#elements[@]} - 1]}</h1>"
-	else
-		echo "<h1>dna.example</h1>"
-	fi
+	# if [[ ${#elements[@]} -ge 2 ]]; then
+	# 	echo "<h1>${elements[${#elements[@]} - 1]}</h1>"
+	# else
+	# 	echo "<h1>dna.example</h1>"
+	# fi
 	echo "<ul>"
 	for a in $(ls $outputDir/$1); do
 		if [[ "index.php" != $a ]]; then
-			echo "<li><a href='$a/index.php'>$a</a></li>"
+			echo "<li><a href='$a/index.php' style='font-size:14pt;'>$a</a></li>"
 		fi
 	done
 	echo '</ul>'

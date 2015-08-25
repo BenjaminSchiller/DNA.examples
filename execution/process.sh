@@ -4,7 +4,7 @@ source config.sh
 
 function process_dir {
 	./html.sh $1 > $outputDir$1/index.php
-	for a in $(ls $javaDir$1); do
+	for a in $(ls $javaDir$1 | grep -v "package-info.java"); do
 		if [[ -d "$javaDir$1/$a" ]]; then
 			if [[ ! -d "$outputDir$1/$a" ]]; then mkdir "$outputDir$1/$a"; fi
 			process_dir "$1/$a"
