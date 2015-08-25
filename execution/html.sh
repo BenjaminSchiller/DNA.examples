@@ -52,7 +52,8 @@ if [[ -f $javaDir$1.java ]]; then
 	#echo '<table><tr><td colspan="2">'
 	echo "<h2>DESCRIPTION</h2>"
 	echo '<pre style="background-color: #f0f0f0; border-style:dashed; border-width: 1px;">'
-	cat $javaDir$1.java | grep "\*" | grep -v "/\*" | grep -v "\*/" | grep -v "@author" | sed 's/ \* //g' | sed 's/ \*//'
+	# cat $javaDir$1.java | grep "\*" | grep -v "/\*" | grep -v "\*/" | grep -v "@author" | sed 's/ \* //g' | sed 's/ \*//'
+	awk '/\/\*\*/,/\*\//' $javaDir$1.java | grep -v "/\*\*" | grep -v "\*/" | grep -v "@author" | sed 's/ \* //g' | sed 's/ \*//'
 	echo "</pre>"
 	#echo '</td></tr><tr><td>'
 	echo "<h2>CODE</h2>"
@@ -123,9 +124,11 @@ else
 		if [[ "index.php" != $a ]]; then
 			echo "<h2><a href='$a/index.php' style='font-size:14pt;'>$a</a></h2>"
 			if [[ -e "$javaDir$1/$a/package-info.java" ]]; then
-				cat $javaDir$1/$a/package-info.java | grep -v package | grep -v '/\*\*' | grep -v '\*/' | sed 's/ \* //g' | sed 's/ \*//'
+				#cat $javaDir$1/$a/package-info.java | grep -v package | grep -v '/\*\*' | grep -v '\*/' | sed 's/ \* //g' | sed 's/ \*//'
+				awk '/\/\*\*/,/\*\//' $javaDir$1/$a/package-info.java | grep -v "/\*\*" | grep -v "\*/" | grep -v "@author" | sed 's/ \* //g' | sed 's/ \*//'
 			elif [[ -e "$javaDir$1/$a.java" ]]; then
-				cat $javaDir$1/$a.java | grep "\*" | grep -v "/\*" | grep -v "\*/" | grep -v "@author" | sed 's/ \* //g' | sed 's/ \*//'
+				# cat $javaDir$1/$a.java | grep "\*" | grep -v "/\*" | grep -v "\*/" | grep -v "@author" | sed 's/ \* //g' | sed 's/ \*//'
+				awk '/\/\*\*/,/\*\//' $javaDir$1/$a.java | grep -v "/\*\*" | grep -v "\*/" | grep -v "@author" | sed 's/ \* //g' | sed 's/ \*//'
 			fi
 			echo "<?php spacer(); ?>"
 		fi
