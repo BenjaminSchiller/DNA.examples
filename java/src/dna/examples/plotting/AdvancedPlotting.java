@@ -74,9 +74,9 @@ import dna.util.Config;
  * @author Rwilmes
  * 
  */
-public class BasicPlotting extends Example {
+public class AdvancedPlotting extends Example {
 
-	public BasicPlotting(String[] args) {
+	public AdvancedPlotting(String[] args) {
 		super(args);
 	}
 

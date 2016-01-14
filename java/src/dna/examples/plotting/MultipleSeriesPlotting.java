@@ -1,6 +1,23 @@
 package dna.examples.plotting;
 
+import java.io.IOException;
+
 import dna.examples.Example;
+import dna.graph.datastructures.GDS;
+import dna.graph.datastructures.GraphDataStructure;
+import dna.graph.generators.GraphGenerator;
+import dna.graph.generators.random.RandomGraph;
+import dna.metrics.Metric;
+import dna.metrics.MetricNotApplicableException;
+import dna.metrics.clustering.DirectedClusteringCoefficientR;
+import dna.metrics.degree.DegreeDistributionR;
+import dna.plot.Plotting;
+import dna.series.AggregationException;
+import dna.series.Series;
+import dna.series.data.SeriesData;
+import dna.updates.generators.BatchGenerator;
+import dna.updates.generators.random.RandomBatch;
+import dna.util.Config;
 
 /**
  * 
